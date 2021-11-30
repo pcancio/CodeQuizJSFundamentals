@@ -30,7 +30,7 @@ var score = 0;
 var quizContainerEl = document.querySelector("#quiz-container");
 var scoreEl = document.querySelector("#totalScore");
 var timerEl = document.querySelector("#timer");
-var main = document.querySelector("#main");
+var mainEl = document.querySelector("#main");
 var check = document.querySelector("checkAnswer");
 var storedScore = document.querySelector("getHighScore");
 var timeLeft = 100;
@@ -40,12 +40,36 @@ function StartQuiz(questionId) {
     var quizTextEl = document.createElement("div");
     quizTextEl.id = "question" + questionId;
     quizTextEl.className = "btn-container";
-    quizTextEl.innerHTML = "<h2>Questions[questionId].question </h2>";
+    quizTextEl.innerHTML = Questions[questionId].question;
     for (ans in Questions[questionId].answers) {
         startButtonEl.className = "start-btn"
-        startButtonEl.setAttribute("onclick", "checkAnswer" + questionId + "," + "Questions[questionId].answers[ans]");
+        startButtonEl.setAttribute("onclick", "checkAnswer" + questionId + "," + Questions[questionId].answers[ans]);
         startButtonEl.textContent = Questions[questionId].answers[ans];
         quizTextEl.appendChild(quizInfoEl);
-
-
     }
+    mainEl.appendChild(quizTextEl);
+}
+
+function checkAnswer(questionId, answers) {
+    var selectContainer = document.querySelector("#question" + questionId);
+    if (answers === Questions[questionId].correctAnswer) {
+        correct();
+        score += 10;
+        showScore();
+        questionId++;
+    } else {
+        wrong()
+        timeLeft -= 10;
+        questionId++;
+    }
+    selectContainer.remove();
+    if (Questions[questionId] === undefinded) {
+        gameOver();
+    } else {
+        StartQuiz(questionId);
+    }
+}
+
+function gameOver() {
+    var currentEl = document.querySelector(".btn-container")
+}

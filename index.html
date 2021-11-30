@@ -24,11 +24,28 @@
         </div>
     </header>
     <!-- Quiz Container -->
-    <container id="quiz-container">
-        <div id="main">
-            <h1> JavaScript Fundamentals Quiz</h1>
-            <button id="start-button">START</button></div>
-    </container>
+    <div class="container">
+        <div id="question-container" class="hide">
+            <div id="question">This is a Question</div>
+            <div id="answer-buttons" class="btn-grid">
+                <button class="btn"> Answer 1</button>
+                <button class="btn"> Answer 2</button>
+                <button class="btn"> Answer 3</button>
+                <button class="btn"> Answer 4</button>
+            </div>
+        </div>
+        <div class="controls">
+            <button id="start-btn" class="start-btn btn">START</button>
+            <button id="next-btn" class="next-btn btn hide">NEXT</button>
+        </div>
+    </div>
+
+
+
+
+
+
+
     <!-- Footer -->
     <footer> &copy; 2021 by Patricia Cancio</footer>
     <script src="./assets/js/script.js"></script>
