@@ -31,6 +31,8 @@ var quizContainerEl = document.querySelector("#quiz-container");
 var scoreEl = document.querySelector("#totalScore");
 var timerEl = document.querySelector("#timer");
 var main = document.querySelector("#main");
+var check = document.querySelector("checkAnswer");
+var storedScore = document.querySelector("getHighScore");
 var timeLeft = 100;
 var HighScore = [];
 
@@ -40,7 +42,10 @@ function StartQuiz(questionId) {
     quizTextEl.className = "btn-container";
     quizTextEl.innerHTML = "<h2>Questions[questionId].question </h2>";
     for (ans in Questions[questionId].answers) {
-        startButtonEl.class "start-btn"
-    }
+        startButtonEl.className = "start-btn"
+        startButtonEl.setAttribute("onclick", "checkAnswer" + questionId + "," + "Questions[questionId].answers[ans]");
+        startButtonEl.textContent = Questions[questionId].answers[ans];
+        quizTextEl.appendChild(quizInfoEl);
 
-}
+
+    }
