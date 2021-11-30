@@ -3,6 +3,8 @@ const nextButton = document.getElementById('next-btn');
 const questionContainerEl = document.getElementById('question-container');
 const questionEl = document.getElementById('question');
 const answerEl = document.getElementById('answer-buttons');
+let timeLeft = 60;
+let Highscore = [];
 
 let shuffledQuestions, currentQuestionIndex
 
@@ -12,6 +14,9 @@ nextButton.addEventListener('click', () => {
     setNextQuestion()
 })
 
+function gameOver() {
+    const currentEl = document.querySelector()
+}
 function startQuiz() {
     startButton.classList.add('hide')
     shuffledQuestions = questions.sort(() => Math.random() - .5);

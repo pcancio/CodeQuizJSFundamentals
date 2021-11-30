@@ -11,18 +11,19 @@
 
 <body>
     <!-- Header with score and timer -->
-    <!-- <header>
-        <div a href="./highscore.html">
-            <h3>See High Scores</h3>
-            </a>
+    <header>
+        <div class="timer">
+            <div class="time-left-text">Time Left:</div>
+            <div class="timer-sec">60</div>
         </div>
         <div class="score">
-            <h3>Your Score: <span id="totalScore">0</span></h3>
+            <div class="score-text">Your Score:</div>
+            <div class="score-num">0</div>
         </div>
-        <div class="timer">
-            <h3>Time Left: <span id="time">0</span></h3>
+        <div class="highscore">
+            <a href="./scores.html">View High Scores</a>
         </div>
-    </header> -->
+    </header>
     <!-- Quiz Container -->
     <div class="container">
         <div id="question-container" class="hide">
@@ -37,8 +38,10 @@
         <div class="controls">
             <button id="start-btn" class="start-btn btn">START</button>
             <button id="next-btn" class="next-btn btn hide">NEXT</button>
+            <button id="quit-btn" class="quit-btn btn">QUIT</button>
         </div>
     </div>
+
 
 
 
