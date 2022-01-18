@@ -43,3 +43,19 @@ for (var i = 0; i < userSelection.length; i++) {
         } else { buildQuiz(quizQuestions[questionIndex]) }
     })
 }
+
+function endGame() {
+    card.innerHTML = `
+    <div>Your score is ${secondsLeft}</div>
+    <h1="fname">Enter your intials:</h1><br>
+    <input type ="text" id ="initials"><br>
+    <button id="submit">Submit</button>
+    `
+    submitBtn = document.getElementById('submit')
+    submitBtn.addEventListener('click', function() {
+        var initals = document.getElementById('initials').value
+        localStorage.setItem = ('initials', initals)
+        localStorage.setItem = ('score', secondsLeft)
+        alert("Thanks for playing!")
+    })
+}
