@@ -59,3 +59,48 @@ function endGame() {
         alert("Thanks for playing!")
     })
 }
+
+var quizQuestions = [{
+        question: "",
+        choice1: "",
+        choice2: "",
+        choice3: "",
+        choice4: "",
+        answer: ""
+    },
+    {
+        question: "",
+        choice1: "",
+        choice2: "",
+        choice3: "",
+        choice4: "",
+        answer: ""
+    },
+    {
+        question: "",
+        choice1: "",
+        choice2: "",
+        choice3: "",
+        choice4: "",
+        answer: ""
+    },
+    {
+        question: "",
+        choice1: "",
+        choice2: "",
+        choice3: "",
+        choice4: "",
+        answer: ""
+    },
+    {
+        question: "",
+        choice1: "",
+        choice2: "",
+        choice3: "",
+        choice4: "",
+        answer: ""
+    },
+]
+
+var startQuizBtn = document.getElementById('start-quiz');
+startQuizBtn.addEventListener('click', startQuiz)
