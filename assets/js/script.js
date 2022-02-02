@@ -1,3 +1,39 @@
+// Questions Array
+
+var questionInfo = [{
+        question: "Inside which HTML element do we put the JavaScript?",
+        choices: ["<script>", "<js>", "<scripting>", "<javascript>"],
+        answer: "<script>"
+    },
+    {
+        question: "What is the correct syntax for referring to an external script called 'xxx.js'?",
+        choices: ["<script href='xxx.js'>", "<script ='xxx.js'>", "<script src='xxx.js'>", "<javascript ='xxx.js'>"],
+        answer: "<script src='xxx.js'>"
+    },
+    {
+        question: "How do you write 'Hello World' in an alert box?",
+        choices: ["msgBox('Hello World')", "alert('Hello World');", "alertBox('Hello World');", "msg('Hello World');"],
+        answer: "alert('Hello World');"
+    },
+    {
+        question: "How to write an IF statement in JavaScript?",
+        choices: ["if i = 5", "if (i = 5)", "if i = 5 then", "if i == 5 then"],
+        answer: "if (i = 5)"
+    },
+    {
+        question: "How to write an IF statement for executing some code if 'i' is NOT equal to 5?",
+        choices: ["if (i !=5)", "if i=!5 then", "if (i) !=5", "if i <> 5"],
+        answer: "if (i != 5)"
+    },
+]
+
+
+
+
+
+
+
+
 var headerEl = document.getElementById("top");
 var contentId = document.getElementById("content");
 
@@ -8,7 +44,15 @@ function createElement(element, type, value, text) {
     return tmp;
 };
 
+function createButton(idValue) {
+    var tmp = document.createElement("button");
+    tmp.setAttribute("type", "button");
+    tmp.setAttribute("class", "answers");
+    tmp.setAttribute("id", idValue);
+    return tmp;
+};
 
+jonath
 
 
 
@@ -75,47 +119,7 @@ function endGame() {
     })
 }
 
-var quizQuestions = [{
-        question: "Inside which HTML element do we put the JavaScript?",
-        choice1: "<script>",
-        choice2: "<js>",
-        choice3: "<scripting>",
-        choice4: "<javascript>",
-        answer: "<script>"
-    },
-    {
-        question: "What is the correct syntax for referring to an external script called 'xxx.js'?",
-        choice1: "<script href='xxx.js'>",
-        choice2: "<script ='xxx.js'>",
-        choice3: "<script src='xxx.js'>",
-        choice4: "<javascript ='xxx.js'>",
-        answer: "<script src='xxx.js'>"
-    },
-    {
-        question: "How do you write 'Hello World' in an alert box?",
-        choice1: "msgBox('Hello World')",
-        choice2: "alert('Hello World');",
-        choice3: "alertBox('Hello World');",
-        choice4: "msg('Hello World');",
-        answer: "alert('Hello World');"
-    },
-    {
-        question: "How to write an IF statement in JavaScript?",
-        choice1: "if i = 5",
-        choice2: "if (i==5)",
-        choice3: "if i = 5 then",
-        choice4: "if i == 5 then",
-        answer: "if (i==5)"
-    },
-    {
-        question: "How to write an IF statement for executing some code if 'i' is NOT equal to 5?",
-        choice1: "if (i !=5)",
-        choice2: "if i=!5 then",
-        choice3: "if (i) !=5",
-        choice4: "if i <> 5",
-        answer: "if (i != 5)"
-    },
-]
+var quizQuestions = [
 
-var startQuizBtn = document.getElementById('start-quiz');
-startQuizBtn.addEventListener('click', startQuiz)
+        var startQuizBtn = document.getElementById('start-quiz');
+        startQuizBtn.addEventListener('click', startQuiz)
