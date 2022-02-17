@@ -17,7 +17,25 @@ function createButton(idValue) {
     tmp.setAttribute("id", idValue);
     return tmp;
 
+// create span for answer button text
+function createSpan(idValue) {
+    var tmp = document.createElement("span");
+    tmp.setAttribute("data-answer", "option" + idValue);
+    tmp.setAttribute("id", "option" + idValue);
+    return tmp;
+
+// append child elements 
+function appendChild(location, element) {
+    var tmp = location.appendChild(element);
+    return tmp;
+};
+
+// Start the quiz! 
+function startQuiz(event) {
+    event.preventDefault;
+
 // Questions Array
+
 
 var questionInfo = [{
         question: "Inside which HTML element do we put the JavaScript?",
