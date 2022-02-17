@@ -75,7 +75,25 @@ event.preventDefault;
 // function to shuffle questionIndex
 shuffle(questionIndex);
 
-// This function will shuffle order of questions in the array
+// Quiz variables
+var lastQuestionIndex = questionList.length - 1;
+var score = 0;
+var currentQuestionIndex = 0;
+countDown = 60;
+countDownSpan.textContent = countDown;
+
+// Hiding description and quiz button
+document.querySelector("#description").style.display = "none";
+document.querySelector("#start-quiz").style.display = "none";
+contentId.style.textAlign = "left";
+
+// start the timer
+setTime();
+
+//Create answer buttons
+createAnswers();
+
+//function will shuffle order of questions 
 function shuffle(array) {
     var currentIndex = array.length;
     var temporaryValue, randomIndex;
@@ -89,108 +107,4 @@ function shuffle(array) {
     return array;
 };
 
- // Declaring my elements and their matching html names
-
-                var startQuizEl = document.getElementById('start');
-                var timerEl = document.getElementById('time');
-                var startScreenEl = document.getElementById('start-screen');
-                var questionsEl = document.getElementById('questions');
-                var questionTitleEl = document.getElementById('question-title');
-
-
-
-
-
-
-
-
-
-                var headerEl = document.getElementById("top");
-                var contentId = document.getElementById("content");
-
-                function createElement(element, type, value, text) {
-                    var tmp = document.createElement(element);
-                    tmp.setAttribute(type, value);
-                    tmp.textContent = text;
-                    return tmp;
-                };
-
-                function createButton(idValue) {
-                    var tmp = document.createElement("button");
-                    tmp.setAttribute("type", "button");
-                    tmp.setAttribute("class", "answers");
-                    tmp.setAttribute("id", idValue);
-                    return tmp;
-                };
-
-                jonath
-
-
-
-
-                var timeEl = document.querySelector(".time");
-                var secondsLeft = 75;
-                var questionIndex = 0;
-                var submitBtn;
-
-                function startQuiz() {
-                    var timerInterval = setInterval(function() {
-                        secondsLeft--;
-                        timeEl.textContent = secondsLeft;
-
-                        if (secondsLeft <= 0) {
-                            clearInterval(timerInterval);
-                            sendMessage();
-                            endGame();
-                        }
-                    }, 1000);
-                    buildQuiz(quizQuestions[questionIndex])
-                }
-
-                function sendMessage() {
-                    alert("Game over! Enter your score.")
-                }
-                var card = document.getElementById('welcomeCard')
-
-                function buildQuiz(quizQ) {
-                    card.innerHTML = `
-    <div> ${ quizQ.question} </div> 
-        <button class = "answerBtn"> ${ quizQ.choice1 } </button> 
-        <button class = "answerBtn" > ${ quizQ.choice2 } </button> 
-        <button class = "answerBtn" > ${ quizQ.choice3 } </button> 
-        <button class = "answerBtn" > ${ quizQ.choice4 } </button>`
-                }
-                var userSelection = document.getElementsByClassName('answerBtn')
-                for (var i = 0; i < userSelection.length; i++) {
-                    userSelection[i].addEventListener('click', function(event) {
-                        if (event.target.innerText === quizQ.answer) {} else {
-                            secondsLeft -= 10
-                        }
-                        questionIndex++
-                        if (questionIndex === quizQuestions.length) {
-                            endGame()
-                            timeEl = secondsLeft
-                        } else { buildQuiz(quizQuestions[questionIndex]) }
-                    })
-                }
-
-                function endGame() {
-                    card.innerHTML = `
-    <div>Your score is ${secondsLeft}</div>
-    <h1="fname">Enter your intials:</h1><br>
-    <input type ="text" id ="initials"><br>
-    <button id="submit">Submit</button>
-    `
-                    submitBtn = document.getElementById('submit')
-                    submitBtn.addEventListener('click', function() {
-                        var initals = document.getElementById('initials').value
-                        localStorage.setItem = ('initials', initals)
-                        localStorage.setItem = ('score', secondsLeft)
-                        alert("Thanks for playing!")
-                    })
-                }
-
-                var quizQuestions = [
-
-                        var startQuizBtn = document.getElementById('start-quiz');
-                        startQuizBtn.addEventListener('click', startQuiz)
+ 
