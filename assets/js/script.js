@@ -1,5 +1,13 @@
+// set variables 
+var headerEl = document.getElementById("header");
+var contentId = document.getElementById("content");
 
-
+// create elements 
+function createElement(element, type, value, text) {
+    var tmp = document.createElement(element);
+    tmp.setAttribute(type, value);
+    tmp.textContent = text;
+    return tmp;
 
 // Questions Array
 

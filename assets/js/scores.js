@@ -7,7 +7,7 @@ orderedList.setAttribute("id", "scores")
 contentId.appendChild(orderedList);
 var olTag = document.getElementById("scores");
 
-// Displaying Scores here from big to small
+// this renders the scores from highest to lowest
 var highScoreList = JSON.parse(localStorage.getItem("highScores"));
 
 if (highScoreList == null) {
@@ -26,7 +26,7 @@ if (highScoreList == null) {
     }
 }
 
-// Displays buttons to go back to the quiz or clear the high score list
+// this renders buttons 
 var btnDiv = document.createElement("div");
 btnDiv.setAttribute("id", "nav");
 contentId.appendChild(btnDiv);
@@ -35,14 +35,16 @@ var btnSpan = document.createElement("span");
 btnSpan.setAttribute("id", "buttons")
 document.getElementById("nav").appendChild(btnSpan)
 
+// this is the go back to the game button
 var goBackBtn = document.createElement("button");
 goBackBtn.setAttribute("id", "go-back");
-goBackBtn.textContent = "Go Back"
+goBackBtn.textContent = "Go Back to the Quiz"
 document.getElementById("buttons").appendChild(goBackBtn);
 
+// this is the clear high scores button
 var clearListBtn = document.createElement("button");
 clearListBtn.setAttribute("id", "clear-list");
-clearListBtn.textContent = "Clear List"
+clearListBtn.textContent = "Clear High Scores"
 document.getElementById("buttons").appendChild(clearListBtn);
 
 document.getElementById("go-back").addEventListener("click", function () {
