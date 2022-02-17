@@ -16,6 +16,7 @@ tmp.setAttribute("type", "button");
 tmp.setAttribute("class", "answers");
 tmp.setAttribute("id", idValue);
 return tmp;
+};
 
 // create span for answer button text
 function createSpan(idValue) {
@@ -23,6 +24,7 @@ var tmp = document.createElement("span");
 tmp.setAttribute("data-answer", "option" + idValue);
 tmp.setAttribute("id", "option" + idValue);
 return tmp;
+};
 
 // append child elements 
 function appendChild(location, element) {
@@ -30,12 +32,11 @@ var tmp = location.appendChild(element);
 return tmp;
 };
 
-// Start the quiz! 
+// Start the quiz! and do all the functions after the array
 function startQuiz(event) {
 event.preventDefault;
-
 // Questions Array
-                questionIndex = [];
+questionIndex = [];
 
                 var q1 = {
                     text: "Inside which HTML element do we put the JavaScript?",
@@ -71,8 +72,8 @@ event.preventDefault;
                     answer: "if (i != 5)"
                 };
                 questionIndex.push(q5)
-            }
-// function to shuffle questionIndex
+            
+// call function to shuffle questionIndex
 shuffle(questionIndex);
 
 // Quiz variables
@@ -87,11 +88,37 @@ document.querySelector("#description").style.display = "none";
 document.querySelector("#start-quiz").style.display = "none";
 contentId.style.textAlign = "left";
 
-// start the timer
+// call to start the timer
 setTime();
-
-//Create answer buttons
+//call to create answer buttons
 createAnswers();
+// call the first question to render
+renderQuestion();
+//target the answer buttons for user input and checking answer
+var answerIndex = document.querySelectorAll(".answers");
+for (var i = 0; i < answerList.length; i++) {
+    answerIndex[i].addEventListener('click', checkAnswer)
+};
+//function starts the timer when the quiz starts, makes 0 game over
+
+    function setTime() {
+        var timerInterval = setInterval(function () {
+            countDown--;
+            countDownSpan.textContent = countDown;
+            if (countDown === 0) {
+                clearInterval(timerInterval);
+                gameOver();
+            } else if (countDown < 0) {
+                clearInterval(timerInterval);
+                gameOver();
+                countDown = 0
+            }
+            else if (currentQuestionIndex === lastQuestionIndex) {
+                clearInterval(timerInterval);
+            }
+        }, 1000);
+    };
+}
 
 //function will shuffle order of questions 
 function shuffle(array) {
@@ -106,5 +133,7 @@ function shuffle(array) {
     }
     return array;
 };
+
+
 
  
