@@ -1,3 +1,6 @@
+
+
+
 // Questions Array
 
 var questionInfo = [{
@@ -26,6 +29,14 @@ var questionInfo = [{
         answer: "if (i != 5)"
     },
 ]
+// Declaring my elements and their matching html names
+
+var startQuizEl = document.getElementById('start');
+var timerEl = document.getElementById('time');
+var startScreenEl = document.getElementById('start-screen');
+var questionsEl = document.getElementById('questions');
+var questionTitleEl = document.getElementById('question-title');
+
 
 
 
