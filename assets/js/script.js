@@ -9,6 +9,14 @@ function createElement(element, type, value, text) {
     tmp.textContent = text;
     return tmp;
 
+// create answer buttons
+function createButton(idValue) {
+    var tmp = document.createElement("button");
+    tmp.setAttribute("type", "button");
+    tmp.setAttribute("class", "answers");
+    tmp.setAttribute("id", idValue);
+    return tmp;
+
 // Questions Array
 
 var questionInfo = [{
