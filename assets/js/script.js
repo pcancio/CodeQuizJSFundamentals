@@ -42,6 +42,8 @@ function startQuiz() {
     randQuestion = questions.sort(() => Math.random() - 0.5);
     questionIndex = 0;
     showNextQuestion();
+    startButton.hide;
+
 }
 // show next
 function showNextQuestion() {
@@ -71,10 +73,8 @@ function selectAnswer(answer) {
     if (
         questions[questionIndex].answer === questions[questionIndex].choices[answer]
     ) {
-        messageDiv.textContent = "Correct!";
         score += 20;
     } else {
-        messageDiv.textContent = "Wrong!";
         score -= 20;
         time -= 10;
     }
