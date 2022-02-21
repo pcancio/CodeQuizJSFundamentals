@@ -45,6 +45,30 @@ function startQuiz() {
     questionIndex = 0;
     showNextQuestion();
   }
+  // show next
+function showNextQuestion() {
+    showQuestion(randQuestion[questionIndex]);
+  }
+  
+  // get next 
+  function showQuestion() {
+    answer1.hidden = false;
+    answer2.hidden = false;
+    answer3.hidden = false;
+    answer4.hidden = false;
+  
+    startButton.classList.add("hide");
+    if (questionIndex === questions.length) {
+      endGame();
+    } else {
+      questionText.innerText = questions[questionIndex].question;
+      answer1.textContent = questions[questionIndex]["choices"][0];
+      answer2.textContent = questions[questionIndex]["choices"][1];
+      answer3.textContent = questions[questionIndex]["choices"][2];
+      answer4.textContent = questions[questionIndex]["choices"][3];
+    }
+  }
+  
 
 
 
@@ -90,247 +114,3 @@ questionIndex = [];
                 };
                 questionIndex.push(q5)
             
-// call function to shuffle questionIndex
-shuffle(questionIndex);
-
-// Quiz variables
-var lastQuestionIndex = questionIndex.length - 1;
-var score = 0;
-var currentQuestionIndex = 0;
-countDown = 60;
-countDownSpan.textContent = countDown;
-
-// Hiding description and quiz button
-document.querySelector("#description").style.display = "none";
-document.querySelector("#start-quiz").style.display = "none";
-contentId.style.textAlign = "left";
-
-// call to start the timer
-startTime();
-//call to create answer buttons
-createAnswers();
-// call the first question to render
-renderQuestion();
-//target the answer buttons for user input and checking answer
-var answerIndex = document.querySelectorAll(".answers");
-for (var i = 0; i < answerIndex.length; i++) {
-    answerIndex[i].addEventListener('click', checkAnswer)
-};
-//function starts the timer when the quiz starts, makes 0 game over
-
-    function startTime() {
-        var timerInterval = setInterval(function () {
-            countDown--;
-            countDownSpan.textContent = countDown;
-            if (countDown === 0) {
-                clearInterval(timerInterval);
-                gameOver();
-            } else if (countDown < 0) {
-                clearInterval(timerInterval);
-                gameOver();
-                countDown = 0
-            }
-            else if (currentQuestionIndex === lastQuestionIndex) {
-                clearInterval(timerInterval);
-            }
-        }, 1000);
-    };
-// function to create the answer buttons
-function createAnswers() {
-var qs = questionIndex[currentQuestionIndex];
-var answers = createElement("div", "id", "answers");
-appendChild(contentId, answers);
-var answersDiv = document.getElementById("answers");
-        appendChild(answersDiv, button0);
-        appendChild(answersDiv, button1);
-        appendChild(answersDiv, button2);
-        appendChild(answersDiv, button3);
-        for (var i = 0; i < qs.choices.length; i++) {
-            var textSpan = createSpan(i);
-            appendChild(document.getElementById("btn" + i), textSpan)
-        };
-    };
-// function to shuffle order of qs
-    function shuffle(array) {
-        var currentIndex = array.length;
-        var temporaryValue, randomIndex;
-        while (0 !== currentIndex) {
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex -= 1;
-            temporaryValue = array[currentIndex];
-            array[currentIndex] = array[randomIndex];
-            array[randomIndex] = temporaryValue;
-        }
-        return array;
-    };
-
-    // function to render 
-    function renderQuestion() {
-        var qs = questionIndex[currentQuestionIndex];
-
-        questionH1.textContent = qs.text;
-
-        for (var i = 0; i < q.choices.length; i++) {
-            document.getElementById("option" + i).textContent = qs.choices[i];
-        }
-    };
-
-    // function to check if answer is correct.
-    function checkAnswer(event) {
-        event.preventDefault();
-        var wrongAnswer = 10;
-        var qs = questionIndex[currentQuestionIndex];
-        var userInput = this.children[0].getAttribute("data-answer");
-        // if correct, show correct 
-        if (userInput === qs.correctAnswer) {
-            score++;
-            displayCorrect();
-        } else {
-            // if wrong show wrong and lose points
-            countDown = countDown - wrongAnswer;
-            countDown.textContent = countDown;
-            displayWrong();
-        };
-        // keep doing it till last question then game over
-        if (currentQuestionIndex < lastQuestionIndex) {
-            currentQuestionIndex++;
-            renderQuestion();
-        } else {
-            gameOver();
-        };
-    };
-
-    // show that the answer was correct
-    function displayCorrect() {
-        var correct = createElement("h3", "id", "correct", "Correct!");
-        appendChild(document.body, correct);
-        timer = 1;
-        var timerInterval = setInterval(function () {
-            timer--;
-            if (timer === 0) {
-                clearInterval(timerInterval);
-                var element = document.getElementById("correct");
-                element.parentNode.removeChild(element);
-                timer = 1;
-            };
-        }, 1000);
-    };
-
-    // show that the answer was wrong
-    function displayWrong() {
-        var wrong = createElement("h3", "id", "wrong", "Wrong!")
-        appendChild(document.body, wrong);
-        timer = 1;
-        var timerInterval = setInterval(function () {
-            timer--;
-            if (timer === 0) {
-                clearInterval(timerInterval);
-                var element = document.getElementById("wrong");
-                element.parentNode.removeChild(element);
-                timer = 1;
-            };
-        }, 1000);
-    };
-    // game overrrrr, then do: 
-    function gameOver() {
-        countDownSpan.textContent = 0;
-        contentId.style.textAlign = "center";
-        questionH1.textContent = "GAME OVER"
-        hideButtons();
-        showScore();
-        addInitials()
-    }
-
-    // hide answer buttons
-    function hideButtons() {
-        var q = questionIndex[currentQuestionIndex];
-        for (var i = 0; i < q.choices.length; i++) {
-            document.getElementById("btn" + i).style.display = "none";
-        };
-    };
-
-    // show the score
-    function showScore() {
-        var scoreDiv = createElement("h2", "class", "score", "Score: " + score);
-        appendChild(contentId, scoreDiv);
-    };
-
-// function to put initials in local and appends to previous, arrange from highest to lowest
-    function addInitials() {
-        var input = createElement("input", "type", "text");
-        input.setAttribute("id", "input");
-        input.setAttribute("placeholder", "Enter your initials to save your high score!");
-        input.setAttribute("size", "20");
-        var submit = createElement("button", "id", "submit", "Submit");
-        var msg = createElement("div", "id", "msg");
-        appendChild(contentId, input);
-        appendChild(contentId, submit);
-        appendChild(contentId, msg);
-
-        document.getElementById("submit").addEventListener("click", function () {
-            if (document.getElementById("input").value == "") {
-                document.getElementById("msg").textContent = "Please type in your initials!"
-            } else {
-                var highScoreList = JSON.parse(localStorage.getItem("highScores"));
-                if (highScoreList == null) {
-                    var highScoreList = [];
-                    var newScore = new Object();
-                    newScore.initials = document.getElementById("input").value;
-                    newScore.score = score;
-                    highScoreList.push(newScore);
-                    var rankedScore = highScoreList.sort(({ score: a }, { score: b }) => b - a);
-                    localStorage.setItem("highScores", JSON.stringify(rankedScore));
-                }
-                else {
-                    var highScore = new Object();
-                    highScore.initials = document.getElementById("input").value;
-                    highScore.score = score;
-                    highScoreList.push(highScore);
-                    var rankedScore = highScoreList.sort(({ score: a }, { score: b }) => b - a);
-                    localStorage.setItem("highScores", JSON.stringify(rankedScore));
-                };
-                location.href = "highscores.html"
-            };
-        });
-    };
-};
-
-// Creating View Highscore
-var highScoreDiv = createElement("div", "id", "high-scores");
-highScoreDiv.setAttribute("class", "top-position");
-appendChild(headerEl, highScoreDiv);
-var highScoreA = createElement("a");
-highScoreA.setAttribute("href", "highscores.html");
-highScoreA.textContent = "View High Scores";
-appendChild(document.getElementById("high-scores"), highScoreA);
-
-//Creating Timer, first a button then the span that contains the countDown variable
-var countDown = 0;
-var timerDiv = createElement("div", "id", "timer", "Timer: ");
-timerDiv.setAttribute("class", "top-position");
-appendChild(headerEl, timerDiv);
-var countDownSpan = createElement("span", "id", "countdown", countDown);
-headerEl.childNodes[1].appendChild(countDownSpan);
-
-//Creating h1 for displaying game name/questions
-var questionH1 = createElement("h1", "id", "h1", "Coding Quiz Challenge");
-appendChild(contentId, questionH1);
-
-//Creating Description of Quiz
-var descriptionDiv = createElement("p", "id", "description", "Try to answer the following code - related questions within the time limit. Keep in mind that incorrect answers will penalize your scoretime by ten seconds!");
-appendChild(contentId, descriptionDiv);
-
-//Creating Button to Start Quiz, needing to add one more Attribute to this one
-var startButton = createElement("button", "id", "start-quiz", "Start Quiz");
-startButton.setAttribute("type", "button");
-appendChild(contentId, startButton);
-
-// Creating answer buttons
-var button0 = createButton("btn0");
-var button1 = createButton("btn1");
-var button2 = createButton("btn2");
-var button3 = createButton("btn3");
-
-// Click event for starting quiz
-document.getElementById("start-quiz").addEventListener("click", startQuiz);
-
