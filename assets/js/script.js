@@ -18,7 +18,7 @@ let questionIndex = 0;
 let savedScores;
 let scoreList = [];
 
-startButton.addEventListener("click", startGame);
+startButton.addEventListener("click", startQuiz);
 
 // start timer 
 function startTime() {
@@ -57,7 +57,7 @@ function showNextQuestion() {
   
     startButton.classList.add("hide");
     if (questionIndex === questions.length) {
-      endGame();
+      endQuiz();
     } else {
       questionText.innerText = questions[questionIndex].question;
       answer1.textContent = questions[questionIndex]["choices"][0];
@@ -96,6 +96,40 @@ function selectAnswer(answer) {
     selectAnswer(3);
   }
   
+  // GAMEOVERRRR RIP QUIZ
+function endQuiz() {
+    let scoreTag = document.createElement("h1");
+    let inputTag = document.createElement("input");
+    let submitButton = document.createElement("button");
+  
+    score += 20;
+  
+    messageDiv.classList.add("hide");
+    questionText.textContent = "Game Over!";
+  
+    answer1.remove();
+    answer2.remove();
+    answer3.remove();
+    answer4.remove();
+  
+    document.body.children[1].appendChild(scoreTag);
+    document.getElementsByTagName("h1")[0].setAttribute("id", "score");
+    document.getElementById("score").textContent = `Your score is: ${score}`;
+    document.body.children[1].appendChild(inputTag);
+    document.getElementsByTagName("input")[0].setAttribute("id", "input-field");
+  
+    submitButton.textContent = "Submit";
+    document.body.children[1].appendChild(submitButton);
+    document.getElementsByTagName("button")[0].setAttribute("id", "btn");
+    submitButton.addEventListener("click", function (event) {
+      event.preventDefault();
+      let highScoreText = new Object();
+      highScoreText.name = inputTag.value.trim();
+      highScoreText.newScore = score;
+      storeScores(highScoreText);
+      window.location.href = "scores.html";
+    });
+  }
 
   
 
