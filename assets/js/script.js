@@ -26,7 +26,7 @@ function startTime() {
         time--;
         timer.textContent = `Timer: ${time}`;
 
-        if (time === 0) {
+        if (time < 1) {
             clearInterval(timerInterval);
             alert("time's up!");
             endQuiz();
@@ -41,8 +41,9 @@ function startTime() {
 function startQuiz() {
     randQuestion = questions.sort(() => Math.random() - 0.5);
     questionIndex = 0;
+    document.querySelector('#startButton').setAttribute('hidden', 'hidden');
     showNextQuestion();
-    startButton.hide;
+
 
 }
 // show next
@@ -57,7 +58,6 @@ function showQuestion() {
     answer3.hidden = false;
     answer4.hidden = false;
 
-    startButton.classList.add("hide");
     if (questionIndex === questions.length) {
         endQuiz();
     } else {
