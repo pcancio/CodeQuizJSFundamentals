@@ -1,6 +1,26 @@
-// set variables 
-var headerEl = document.getElementById("header");
-var contentId = document.getElementById("content");
+// grab DOM elements
+const startBtn = document.getElementById("startButton");
+const answer1 = document.getElementById("answer1");
+const answer2 = document.getElementById("answer2");
+const answer3 = document.getElementById("answer3");
+const answer4 = document.getElementById("answer4");
+const answers = document.getElementById("answers");
+const questionText = document.getElementById("questionText");
+const gameContainer = document.getElementById("game-div");
+const timer = document.querySelector("#time");
+const messageDiv = document.querySelector("#message");
+
+// declare variables
+let score = 0;
+let time = 60;
+let randQuestion = "";
+let questionIndex = 0;
+let savedScores;
+let scoreList = [];
+let correctSound = new Audio("sounds/green.mp3");
+let incorrectSound = new Audio("sounds/red.mp3");
+
+startButton.addEventListener("click", startGame);
 
 // create elements 
 function createElement(element, type, value, text) {
