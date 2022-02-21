@@ -22,39 +22,36 @@ let incorrectSound = new Audio("sounds/red.mp3");
 
 startButton.addEventListener("click", startGame);
 
-// create elements 
-function createElement(element, type, value, text) {
-    var quiz = document.createElement(element);
-    quiz.setAttribute(type, value);
-    quiz.textContent = text;
-    return quiz;
+// start timer 
+function startTime() {
+    let timerInterval = setInterval(() => {
+      time--;
+      timer.textContent = `Timer: ${time}`;
+  
+      if (time === 0) {
+        clearInterval(timerInterval);
+        alert("time's up!");
+        endGame();
+      } else if (questionIndex === questions.length) {
+        clearInterval(timerInterval);
+      }
+    }, 1000);
+    return score;
+  }
+  
+// start quiz
+function startQuiz() {
+    randQuestion = questions.sort(() => Math.random() - 0.5);
+    questionIndex = 0;
+    showNextQuestion();
+  }
 
-// create answer buttons
-function createButton(idValue) {
-var quiz = document.createElement("button");
-quiz.setAttribute("type", "button");
-quiz.setAttribute("class", "answers");
-quiz.setAttribute("id", idValue);
-return quiz;
-};
 
-// create span for answer button text
-function createSpan(idValue) {
-var quiz = document.createElement("span");
-quiz.setAttribute("data-answer", "option" + idValue);
-quiz.setAttribute("id", "option" + idValue);
-return tmp;
-};
 
-// append child elements 
-function appendChild(location, element) {
-var quiz = location.appendChild(element);
-return quiz;
-};
 
-// Start the quiz! and do all the functions after the array
-function startQuiz(event) {
-event.preventDefault;
+
+
+
 // Questions Array
 questionIndex = [];
 
