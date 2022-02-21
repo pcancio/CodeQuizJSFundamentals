@@ -1,4 +1,4 @@
-// grab DOM elements
+// grab elements from DOM
 const startBtn = document.getElementById("startButton");
 const answer1 = document.getElementById("answer1");
 const answer2 = document.getElementById("answer2");
@@ -17,8 +17,6 @@ let randQuestion = "";
 let questionIndex = 0;
 let savedScores;
 let scoreList = [];
-let correctSound = new Audio("sounds/green.mp3");
-let incorrectSound = new Audio("sounds/red.mp3");
 
 startButton.addEventListener("click", startGame);
 
@@ -68,6 +66,37 @@ function showNextQuestion() {
       answer4.textContent = questions[questionIndex]["choices"][3];
     }
   }
+  // select answer
+function selectAnswer(answer) {
+    if (
+      questions[questionIndex].answer === questions[questionIndex].choices[answer]
+    ) {
+      messageDiv.textContent = "Correct!";
+      score += 20;
+    } else {
+      messageDiv.textContent = "Wrong!";
+      score -= 20;
+      time -= 10;
+    }
+    questionIndex++;
+    showNextQuestion();
+  }
+  
+  // functions to choose each button for selectAnswer
+  function choice0() {
+    selectAnswer(0);
+  }
+  function choice1() {
+    selectAnswer(1);
+  }
+  function choice2() {
+    selectAnswer(2);
+  }
+  function choice3() {
+    selectAnswer(3);
+  }
+  
+
   
 
 
