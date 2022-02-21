@@ -96,7 +96,7 @@ createAnswers();
 renderQuestion();
 //target the answer buttons for user input and checking answer
 var answerIndex = document.querySelectorAll(".answers");
-for (var i = 0; i < answerList.length; i++) {
+for (var i = 0; i < answerIndex.length; i++) {
     answerIndex[i].addEventListener('click', checkAnswer)
 };
 //function starts the timer when the quiz starts, makes 0 game over
@@ -238,12 +238,11 @@ var answersDiv = document.getElementById("answers");
         appendChild(contentId, scoreDiv);
     };
 
-// This function handles the input for initials and puts it into local storage.
-    // It also appends data from previous scores, then sorts in score order from big to small
+// function to put initials in local and appends to previous, arrange from highest to lowest
     function addInitials() {
         var input = createElement("input", "type", "text");
         input.setAttribute("id", "input");
-        input.setAttribute("placeholder", "Type your initials!");
+        input.setAttribute("placeholder", "Enter your initials to save your high score!");
         input.setAttribute("size", "20");
         var submit = createElement("button", "id", "submit", "Submit");
         var msg = createElement("div", "id", "msg");
@@ -278,4 +277,43 @@ var answersDiv = document.getElementById("answers");
         });
     };
 };
-};
+
+// Creating View Highscore
+var highScoreDiv = createElement("div", "id", "high-scores");
+highScoreDiv.setAttribute("class", "top-position");
+appendChild(headerEl, highScoreDiv);
+var highScoreA = createElement("a");
+highScoreA.setAttribute("href", "highscores.html");
+highScoreA.textContent = "View High Scores";
+appendChild(document.getElementById("high-scores"), highScoreA);
+
+//Creating Timer, first a button then the span that contains the countDown variable
+var countDown = 0;
+var timerDiv = createElement("div", "id", "timer", "Timer: ");
+timerDiv.setAttribute("class", "top-position");
+appendChild(headerEl, timerDiv);
+var countDownSpan = createElement("span", "id", "countdown", countDown);
+headerEl.childNodes[1].appendChild(countDownSpan);
+
+//Creating h1 for displaying game name/questions
+var questionH1 = createElement("h1", "id", "h1", "Coding Quiz Challenge");
+appendChild(contentId, questionH1);
+
+//Creating Description of Quiz
+var descriptionDiv = createElement("p", "id", "description", "Try to answer the following code - related questions within the time limit. Keep in mind that incorrect answers will penalize your scoretime by ten seconds!");
+appendChild(contentId, descriptionDiv);
+
+//Creating Button to Start Quiz, needing to add one more Attribute to this one
+var startButton = createElement("button", "id", "start-quiz", "Start Quiz");
+startButton.setAttribute("type", "button");
+appendChild(contentId, startButton);
+
+// Creating answer buttons
+var button0 = createButton("btn0");
+var button1 = createButton("btn1");
+var button2 = createButton("btn2");
+var button3 = createButton("btn3");
+
+// Click event for starting quiz
+document.getElementById("start-quiz").addEventListener("click", startQuiz);
+
