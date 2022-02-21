@@ -2,7 +2,6 @@
 A quiz app with timer that stores high scores
 
 # User Story and Acceptance Criteria
-<br>
 AS A coding boot camp student <br>
 I WANT to take a timed quiz on JavaScript fundamentals that stores high scores <br>
 SO THAT I can gauge my progress compared to my peers
@@ -17,7 +16,7 @@ THEN time is subtracted from the clock <br>
 WHEN all questions are answered or the timer reaches 0 <br>
 THEN the game is over <br>
 WHEN the game is over <br>
-THEN I can save my initials and score <br>
+THEN I can save my initials and score 
 
 # Images 
 Start Quiz
